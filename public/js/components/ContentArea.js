@@ -37,6 +37,8 @@ export default class ContentArea extends LitElement {
   }) {
     return html `
 <style>
+@import '/css/global.css';
+
 #content-area {
   background:#fcfdff;
   padding: 50px 80px;

@@ -35,6 +35,8 @@ class counterComp extends LitElement {
   }) {
     return html `
 <style>
+@import '/css/global.css';
+
 .main-page {
   display: grid;
   grid-template-columns: 250px 1fr;
