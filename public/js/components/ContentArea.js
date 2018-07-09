@@ -5,6 +5,7 @@ import {
 import SideMenu from '/js/components/SideMenu.js'
 import ContactList from '/js/components/ContactsList.js'
 import FavoritesList from '/js/components/FavoritesList.js'
+import FormPopup from '/js/components/FormPopup.js'
 
 export default class ContentArea extends LitElement {
   constructor() {
@@ -45,7 +46,8 @@ export default class ContentArea extends LitElement {
 
 
   <section id="content-area">
-  <favorites-list></favorites-list>
+    <form-popup></form-popup>
+    <favorites-list></favorites-list>
     <contacts-list></contacts-list>
   </section>
 
