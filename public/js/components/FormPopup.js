@@ -10,19 +10,32 @@ export default class FormPopup extends LitElement {
     this.total = {
       number: 0
     }
-
+    this.formData = {}
+    this.change = this.change.bind(this)
   }
 
   //Properties for css styling
   static get properties() {
     return {
       total: Object,
-      popupOpen: Boolean
+      popupOpen: Boolean,
+      formData: Object
     }
   }
 
   _firstRendered() {
 
+    }
+
+    change(event) {
+      let formData = {}
+      let name = event.target.name
+      let value = (event.target.type === 'checkbox') ? event.target.checked : event.target.value
+
+      formData[name] = value
+      this.formData = Object.assign(this.formData, formData)
+
+      console.log(this.formData)
     }
 
 
@@ -140,9 +153,9 @@ export default class FormPopup extends LitElement {
     right: 20px;
     top: 0;
     font-size: 2rem;
-    color: white;
     padding: 20px;
     cursor: pointer;
+    color: white;
   }
 
   .closing-btn svg {
@@ -153,44 +166,44 @@ export default class FormPopup extends LitElement {
 </style>
 
 <section className="form-popup ${(this.popupOpen) ? 'active' : ''}">
-  <form>
+  <form on-submit="${this.saveContact.bind(null. this.formData)}">
   <div class="closing-btn" on-click="${this.togglePopup}">
     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>
   </div>
     <h2>Add a new contact</h2>
     <div class="form-group first_name">
       <label for="first_name"> First Name</label>
-      <input type="text" name="first_name"></input>
+      <input type="text" name="first_name" on-keyup="${this.change}"></input>
     </div>
 
     <div class="form-group last_name">
       <label for="last_name"> Last Name</label>
-      <input type="text" name="last_name"></input>
+      <input type="text" name="last_name" on-keyup="${this.change}"></input>
     </div>
 
     <div class="form-group address-1">
       <label for="address_1">Address #1</label>
-      <input type="text" name="address_1"></input>
+      <input type="text" name="address_1" on-keyup="${this.change}"></input>
     </div>
 
     <div class="form-group address-2">
       <label for="address_2">Address #2</label>
-      <input type="text" name="address_2"></input>
+      <input type="text" name="address_2" on-keyup="${this.change}"></input>
     </div>
 
     <div class="form-group city">
       <label for="city">City</label>
-      <input type="text" name="city"></input>
+      <input type="text" name="city" on-keyup="${this.change}"></input>
     </div>
 
     <div class="form-group state">
       <label for="state">State</label>
-      <input type="text" name="state"></input>
+      <input type="text" name="state" on-keyup="${this.change}"></input>
     </div>
 
     <div class="form-group zipcode">
       <label for="zipcode">Zipcode</label>
-      <input type="text" name="zipcode"></input>
+      <input type="text" name="zipcode" on-keyup="${this.change}"></input>
     </div>
 
     <div class="form-group button">

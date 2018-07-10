@@ -13,14 +13,16 @@ class counterComp extends LitElement {
     }
     this.popupOpen = false
     this.togglePopup = this.togglePopup.bind(this)
-
-
-  }
+    this.saveContact = this.saveContact.bind(this)
+    this.allContacts = []
+}
 
   //Properties for css styling
   static get properties() {
     return {
       total: Object,
+      popupOpen: Boolean,
+      akkContacts: Array
     }
   }
 
@@ -32,7 +34,15 @@ class counterComp extends LitElement {
       this.popupOpen = !this.popupOpen
       console.log('clicked button')
       console.log(this.popupOpen)
-      this.requestRender()
+    }
+
+    saveContacts(contact, event) {
+      event.preventDefault()
+      function immutablePush(arr, newEntry){
+        return [...arr, newEntry]
+      }
+      let newArray = immutablePush(this.allContacts, contact)
+      this.allContacts = newArray
     }
 
 
@@ -56,7 +66,7 @@ class counterComp extends LitElement {
 
 <div class="main-page">
   <side-menu togglePopup="${this.togglePopup}"></side-menu>
-  <content-area popupOpen="${this.popupOpen}" togglePopup="${this.togglePopup}"></content-area>
+  <content-area popupOpen="${this.popupOpen}" togglePopup="${this.togglePopup}" saveContact="${this.saveContact}"></content-area>
 </div>
   `
   }
