@@ -1,7 +1,7 @@
 import {
   LitElement,
   html
-} from '/js/components/lit-element.js';
+} from '/js/lit-element.js?module';
 
 export default class SideMenu extends LitElement {
   constructor() {
@@ -16,6 +16,7 @@ export default class SideMenu extends LitElement {
   static get properties() {
     return {
       total: Object,
+      togglePopup: Function
     }
   }
 
@@ -80,7 +81,7 @@ export default class SideMenu extends LitElement {
     <div class="menu">
       <div class="title">Contacts</div>
       <nav>
-        <a href="#"><span class="icon"> + </span>Add Contact</a>
+        <a href="#" on-click="${this.togglePopup}"><span class="icon"> + </span>Add Contact</a>
         <a href="#"><span class="icon"> + </span>Add Contact</a>
         <a href="#"><span class="icon"> + </span>Add Contact</a>
         <a href="#"><span class="icon"> + </span>Add Contact</a>

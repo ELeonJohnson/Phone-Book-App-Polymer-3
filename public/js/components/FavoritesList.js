@@ -1,7 +1,7 @@
 import {
   LitElement,
   html
-} from '/js/components/lit-element.js';
+} from '/js/lit-element.js?module';
 import SideMenu from '/js/components/SideMenu.js'
 
 export default class FavoritesList extends LitElement {
@@ -73,8 +73,8 @@ export default class FavoritesList extends LitElement {
   .user-img {
     background-image:
     url("https://s3.amazonaws.com/uifaces/faces/twitter/nzcode/128.jpg");
-    height: 54px;
-    width: 54px;
+    height: 80px;
+    width: 80px;
     background-size: cover;
     background-position: center center;
     border-radius: 50%;

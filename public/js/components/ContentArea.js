@@ -1,7 +1,7 @@
 import {
   LitElement,
   html
-} from '/js/components/lit-element.js';
+} from '/js/lit-element.js?module';
 import SideMenu from '/js/components/SideMenu.js'
 import ContactList from '/js/components/ContactsList.js'
 import FavoritesList from '/js/components/FavoritesList.js'
@@ -20,6 +20,8 @@ export default class ContentArea extends LitElement {
   static get properties() {
     return {
       total: Object,
+      popupOpen: Boolean,
+      togglePopup: Function
     }
   }
 
@@ -48,7 +50,7 @@ export default class ContentArea extends LitElement {
 
 
   <section id="content-area">
-    <form-popup></form-popup>
+    <form-popup popupOpen="${this.popupOpen}" togglePopup="${this.togglePopup}"></form-popup>
     <favorites-list></favorites-list>
     <contacts-list></contacts-list>
   </section>

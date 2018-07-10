@@ -1,7 +1,7 @@
 import {
   LitElement,
   html
-} from '/js/components/lit-element.js';
+} from '/js/lit-element.js?module';
 import SideMenu from '/js/components/SideMenu.js'
 
 export default class ContactsList extends LitElement {
@@ -50,7 +50,7 @@ export default class ContactsList extends LitElement {
     display: grid;
     grid-template-columns: 1fr 2fr 3fr 1fr 1fr;
     color: #3d4060;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
     transition: all .4s ease-in-out;
     cursor: pointer;
@@ -65,8 +65,8 @@ export default class ContactsList extends LitElement {
   .contact .user-img {
     background-image:
     url("https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg");
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     background-size: cover;
     background-position: center center;
     border-radius: 10px;
@@ -75,8 +75,8 @@ export default class ContactsList extends LitElement {
   .contact .user-img-2 {
     background-image:
     url("https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg");
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     background-size: cover;
     background-position: center center;
     border-radius: 10px;
@@ -85,8 +85,8 @@ export default class ContactsList extends LitElement {
   .contact .user-img-3 {
     background-image:
     url("https://s3.amazonaws.com/uifaces/faces/twitter/jina/128.jpg");
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     background-size: cover;
     background-position: center center;
     border-radius: 10px;

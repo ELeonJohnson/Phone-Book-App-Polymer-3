@@ -1,7 +1,7 @@
 import {
   LitElement,
   html
-} from '/js/components/lit-element.js';
+} from '/js/lit-element.js?module';
 import SideMenu from '/js/components/SideMenu.js'
 import ContentArea from '/js/components/ContentArea.js'
 
@@ -11,6 +11,9 @@ class counterComp extends LitElement {
     this.total = {
       number: 0
     }
+    this.popupOpen = false
+    this.togglePopup = this.togglePopup.bind(this)
+
 
   }
 
@@ -25,6 +28,13 @@ class counterComp extends LitElement {
 
     }
 
+    togglePopup() {
+      this.popupOpen = !this.popupOpen
+      console.log('clicked button')
+      console.log(this.popupOpen)
+      this.requestRender()
+    }
+
 
 
   // Rendering properties
@@ -33,7 +43,7 @@ class counterComp extends LitElement {
     background,
     fontWeight
   }) {
-    return html `
+    return html`
 <style>
 @import '/css/global.css';
 
@@ -45,8 +55,8 @@ class counterComp extends LitElement {
 </style>
 
 <div class="main-page">
-  <side-menu></side-menu>
-  <content-area></content-area>
+  <side-menu togglePopup="${this.togglePopup}"></side-menu>
+  <content-area popupOpen="${this.popupOpen}" togglePopup="${this.togglePopup}"></content-area>
 </div>
   `
   }

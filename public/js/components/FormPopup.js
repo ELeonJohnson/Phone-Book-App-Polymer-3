@@ -1,7 +1,7 @@
 import {
   LitElement,
   html
-} from '/js/components/lit-element.js';
+} from '/js/lit-element.js?module';
 import SideMenu from '/js/components/SideMenu.js'
 
 export default class FormPopup extends LitElement {
@@ -17,6 +17,7 @@ export default class FormPopup extends LitElement {
   static get properties() {
     return {
       total: Object,
+      popupOpen: Boolean
     }
   }
 
@@ -48,6 +49,15 @@ export default class FormPopup extends LitElement {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
+    visibility: hidden;
+    transition: all .4s ease-in-out;
+    opacity: 0;
+  }
+
+  .form-popup.active {
+    visibility: visible;
+    opacity: 1;
   }
 
   form {
@@ -124,10 +134,29 @@ export default class FormPopup extends LitElement {
     background: linear-gradient(to bottom, #6db3f2 0%,#54a3ee 50%,#3690f0 51%,#1e69de 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   }
 
+  .closing-btn {
+    position: absolute;
+    z-index: 3;
+    right: 20px;
+    top: 0;
+    font-size: 2rem;
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+  }
+
+  .closing-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
 </style>
 
-<section class="form-popup">
+<section className="form-popup ${(this.popupOpen) ? 'active' : ''}">
   <form>
+  <div class="closing-btn" on-click="${this.togglePopup}">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>
+  </div>
     <h2>Add a new contact</h2>
     <div class="form-group first_name">
       <label for="first_name"> First Name</label>
