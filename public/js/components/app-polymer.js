@@ -14,6 +14,7 @@ import ContentArea from '/js/components/ContentArea.js'
     this.popupOpen = false
     this.togglePopup = this.togglePopup.bind(this)
     this.saveContact = this.saveContact.bind(this)
+    this.deleteContact = this.deleteContact.bind(this)
     this.allContacts = []
 }
 
@@ -49,6 +50,15 @@ import ContentArea from '/js/components/ContentArea.js'
       console.log(this.allContacts)
     }
 
+    deleteContact(contact){
+      function immutableDelete(arr, index) {
+        return arr.slice(0, index).concat(arr.slice(index+1))
+      }
+      const newArray = immutableDelete(this.allContacts, contact)
+      this.allContacts = newArray
+      console.log(contact)
+    }
+
 
 
 
@@ -72,7 +82,7 @@ import ContentArea from '/js/components/ContentArea.js'
 
 <div class="main-page">
   <side-menu togglePopup="${this.togglePopup}"></side-menu>
-  <content-area popupOpen="${this.popupOpen}" togglePopup="${this.togglePopup}" saveContact="${this.saveContact}" allContacts="${this.allContacts}"></content-area>
+  <content-area popupOpen="${this.popupOpen}" togglePopup="${this.togglePopup}" saveContact="${this.saveContact}" allContacts="${this.allContacts}" deleteContact="${this.deleteContact}"></content-area>
 </div>
   `
   }

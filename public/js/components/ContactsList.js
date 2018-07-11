@@ -18,7 +18,8 @@ export default class ContactsList extends LitElement {
   static get properties() {
     return {
       total: Object,
-      allContacts: Array
+      allContacts: Array,
+      deleteContact: Function
     }
   }
 
@@ -26,8 +27,10 @@ export default class ContactsList extends LitElement {
 
     }
 
+
+
     displayAllContacts() {
-    return this.allContacts.map((contact) =>{
+    return this.allContacts.map((contact, index) =>{
         return html `
         <div class="contact">
           <div class="user-img"></div>
@@ -49,6 +52,9 @@ export default class ContactsList extends LitElement {
             <span class="text">${contact.category}</span>
             <span class="sub">Category</span>
 
+          </div>
+          <div class="delete-btn" on-click="${this.deleteContact.bind(null, index)}">
+            Delete
           </div>
         </div>
         `
@@ -82,10 +88,12 @@ export default class ContactsList extends LitElement {
     display: grid;
     grid-template-columns: 1fr 2fr 3fr 1fr 1fr;
     color: #3d4060;
-    padding: 40px;
+    padding: 20px;
     border-radius: 10px;
     transition: all .4s ease-in-out;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
   }
 
   .contact:hover {
@@ -130,6 +138,30 @@ export default class ContactsList extends LitElement {
   .fullname, .user-img, .category, .state, .number {
     font-size: 1.4rem;
     font-weight: 500;
+  }
+
+  .delete-btn {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    padding: 20px;
+    color: white;
+    background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-border-top-right-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transform: translate3d(100%, 0, 0);
+    transition: all .4s ease-in-out;
+  }
+
+  .contact:hover .delete-btn {
+    transform: translate3d(0, 0, 0);
   }
 
 </style>
