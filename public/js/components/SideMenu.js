@@ -1,7 +1,7 @@
 import {
   LitElement,
   html
-} from '/js/lit-element.js?module';
+} from '/js/lit-element.js';
 
 export default class SideMenu extends LitElement {
   constructor() {

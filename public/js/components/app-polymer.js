@@ -1,11 +1,11 @@
 import {
   LitElement,
   html
-} from '/js/lit-element.js?module';
+} from '/js/lit-element.js';
 import SideMenu from '/js/components/SideMenu.js'
 import ContentArea from '/js/components/ContentArea.js'
 
-class counterComp extends LitElement {
+ class counterComp extends LitElement {
   constructor() {
     super()
     this.total = {
@@ -22,7 +22,7 @@ class counterComp extends LitElement {
     return {
       total: Object,
       popupOpen: Boolean,
-      akkContacts: Array
+      allContacts: Array
     }
   }
 
@@ -36,14 +36,20 @@ class counterComp extends LitElement {
       console.log(this.popupOpen)
     }
 
-    saveContacts(contact, event) {
-      event.preventDefault()
+    saveContact(contact) {
+      console.log('Save Contact')
+      console.log(contact)
       function immutablePush(arr, newEntry){
-        return [...arr, newEntry]
+        return [ ...arr, newEntry]
       }
       let newArray = immutablePush(this.allContacts, contact)
       this.allContacts = newArray
+      this.togglePopup()
+      console.log('==============')
+      console.log(this.allContacts)
     }
+
+
 
 
 
@@ -66,7 +72,7 @@ class counterComp extends LitElement {
 
 <div class="main-page">
   <side-menu togglePopup="${this.togglePopup}"></side-menu>
-  <content-area popupOpen="${this.popupOpen}" togglePopup="${this.togglePopup}" saveContact="${this.saveContact}"></content-area>
+  <content-area popupOpen="${this.popupOpen}" togglePopup="${this.togglePopup}" saveContact="${this.saveContact}" allContacts="${this.allContacts}"></content-area>
 </div>
   `
   }

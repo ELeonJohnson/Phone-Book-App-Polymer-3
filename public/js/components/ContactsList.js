@@ -1,7 +1,7 @@
 import {
   LitElement,
   html
-} from '/js/lit-element.js?module';
+} from '/js/lit-element.js';
 import SideMenu from '/js/components/SideMenu.js'
 
 export default class ContactsList extends LitElement {
@@ -10,6 +10,7 @@ export default class ContactsList extends LitElement {
     this.total = {
       number: 0
     }
+    this.displayAllContacts = this.displayAllContacts.bind(this)
 
   }
 
@@ -17,10 +18,41 @@ export default class ContactsList extends LitElement {
   static get properties() {
     return {
       total: Object,
+      allContacts: Array
     }
   }
 
   _firstRendered() {
+
+    }
+
+    displayAllContacts() {
+    return this.allContacts.map((contact) =>{
+        return html `
+        <div class="contact">
+          <div class="user-img"></div>
+            <div class="fullname">
+                <span class="text">${contact.first_name} ${contact.last_name}</span>
+              <span class="sub">Full Name</span>
+            </div>
+          <div class="number">
+            <span class="text">${contact.phone_number}</span>
+            <span class="sub">Phone Number</span>
+
+          </div>
+          <div class="state">
+            <span class="text">${contact.state}</span>
+            <span class="sub">State</span>
+
+          </div>
+          <div class="category">
+            <span class="text">${contact.category}</span>
+            <span class="sub">Category</span>
+
+          </div>
+        </div>
+        `
+      })
 
     }
 
@@ -72,26 +104,6 @@ export default class ContactsList extends LitElement {
     border-radius: 10px;
   }
 
-  .contact .user-img-2 {
-    background-image:
-    url("https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg");
-    height: 45px;
-    width: 45px;
-    background-size: cover;
-    background-position: center center;
-    border-radius: 10px;
-  }
-
-  .contact .user-img-3 {
-    background-image:
-    url("https://s3.amazonaws.com/uifaces/faces/twitter/jina/128.jpg");
-    height: 45px;
-    width: 45px;
-    background-size: cover;
-    background-position: center center;
-    border-radius: 10px;
-  }
-
   .contact .fullname {
     font-weight: 700;
     text-transform: capitalize;
@@ -126,73 +138,10 @@ export default class ContactsList extends LitElement {
 
     <section class="contacts">
     <h2>Contacts</h2>
-      <div class="contact">
-        <div class="user-img"></div>
-          <div class="fullname">
-              <span class="text">Sandy Cheeks</span>
-            <span class="sub">Full Name</span>
-          </div>
-        <div class="number">
-          <span class="text">111 - 111 - 1111</span>
-          <span class="sub">Phone Number</span>
+    ${this.displayAllContacts()}
 
-        </div>
-        <div class="state">
-          <span class="text">OH</span>
-          <span class="sub">State</span>
 
-        </div>
-        <div class="category">
-          <span class="text">Friend</span>
-          <span class="sub">Category</span>
 
-        </div>
-      </div>
-      <div class="contact">
-        <div class="user-img-2"></div>
-          <div class="fullname">
-              <span class="text">John Doe</span>
-            <span class="sub">Full Name</span>
-          </div>
-        <div class="number">
-          <span class="text">222 - 222 - 2222</span>
-          <span class="sub">Phone Number</span>
-
-        </div>
-        <div class="state">
-          <span class="text">NY</span>
-          <span class="sub">State</span>
-
-        </div>
-        <div class="category">
-          <span class="text">Friend</span>
-          <span class="sub">Category</span>
-
-        </div>
-      </div>
-      <div class="contact">
-        <div class="user-img-3"></div>
-          <div class="fullname">
-              <span class="text">Leslie Miles</span>
-            <span class="sub">Full Name</span>
-          </div>
-        <div class="number">
-          <span class="text">333 - 333 - 3333</span>
-          <span class="sub">Phone Number</span>
-
-        </div>
-        <div class="state">
-          <span class="text">CA</span>
-          <span class="sub">State</span>
-
-        </div>
-        <div class="category">
-          <span class="text">Friend</span>
-          <span class="sub">Category</span>
-
-        </div>
-      </div>
-    </section>
     </section>
 
 

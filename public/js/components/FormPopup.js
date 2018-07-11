@@ -1,8 +1,10 @@
 import {
   LitElement,
   html
-} from '/js/lit-element.js?module';
+} from '/js/lit-element.js';
 import SideMenu from '/js/components/SideMenu.js'
+
+
 
 export default class FormPopup extends LitElement {
   constructor() {
@@ -12,6 +14,7 @@ export default class FormPopup extends LitElement {
     }
     this.formData = {}
     this.change = this.change.bind(this)
+    this.submitForm = this.submitForm.bind(this)
   }
 
   //Properties for css styling
@@ -25,6 +28,12 @@ export default class FormPopup extends LitElement {
 
   _firstRendered() {
 
+    }
+
+    submitForm(event) {
+      event.preventDefault()
+      this.saveContact(this.formData)
+      this.formData = {}
     }
 
     change(event) {
@@ -166,7 +175,7 @@ export default class FormPopup extends LitElement {
 </style>
 
 <section className="form-popup ${(this.popupOpen) ? 'active' : ''}">
-  <form on-submit="${this.saveContact.bind(null. this.formData)}">
+  <form on-submit="${this.submitForm}">
   <div class="closing-btn" on-click="${this.togglePopup}">
     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>
   </div>
@@ -204,6 +213,21 @@ export default class FormPopup extends LitElement {
     <div class="form-group zipcode">
       <label for="zipcode">Zipcode</label>
       <input type="text" name="zipcode" on-keyup="${this.change}"></input>
+    </div>
+
+    <div class="form-group phone_number">
+      <label for="phone_number">Phone Number</label>
+      <input type="text" name="phone_number" on-keyup="${this.change}"></input>
+    </div>
+
+    <div class="form-group category">
+      <label for="category">Category</label>
+      <input type="text" name="category" on-keyup="${this.change}"></input>
+    </div>
+
+    <div class="form-group favorites">
+      <label for="favorites">Favorites</label>
+      <input type="text" name="favorites" on-keyup="${this.change}"></input>
     </div>
 
     <div class="form-group button">

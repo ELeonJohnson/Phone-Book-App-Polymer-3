@@ -1,7 +1,7 @@
 import {
   LitElement,
   html
-} from '/js/lit-element.js?module';
+} from '/js/lit-element.js';
 import SideMenu from '/js/components/SideMenu.js'
 
 export default class FavoritesList extends LitElement {
@@ -10,6 +10,7 @@ export default class FavoritesList extends LitElement {
     this.total = {
       number: 0
     }
+    this.displayAllFavorites = this.displayAllFavorites.bind(this)
 
   }
 
@@ -17,11 +18,43 @@ export default class FavoritesList extends LitElement {
   static get properties() {
     return {
       total: Object,
+      allContacts: Array
     }
   }
 
   _firstRendered() {
 
+    }
+
+    displayAllFavorites() {
+      return this.allContacts.map((contact) => {
+        if(contact.favorites == 'yes') {
+          return html `
+          <div class="card">
+            <div class="user-img"></div>
+              <div class="fullname">
+                  <span class="text">${contact.first_name} ${contact.last_name}</span>
+                <span class="sub">Full Name</span>
+              </div>
+            <div class="number">
+              <span class="text">${contact.phone_number}</span>
+              <span class="sub">Phone Number</span>
+
+            </div>
+            <div class="state">
+              <span class="text">${contact.state}</span>
+              <span class="sub">State</span>
+
+            </div>
+            <div class="category">
+              <span class="text">${contact.category}</span>
+              <span class="sub">Category</span>
+
+            </div>
+          </div>
+          `
+        }
+      })
     }
 
 
@@ -156,76 +189,10 @@ export default class FavoritesList extends LitElement {
 
     <section class="favorites">
     <h2>Favorites</h2>
-      <div class="card">
-        <div class="user-img"></div>
-          <div class="fullname">
-              <span class="text">Mona Lisa</span>
-            <span class="sub">Full Name</span>
-          </div>
-        <div class="number">
-          <span class="text">000 - 000 - 0000</span>
-          <span class="sub">Phone Number</span>
+    ${this.displayAllFavorites()}
 
-        </div>
-        <div class="state">
-          <span class="text">NJ</span>
-          <span class="sub">State</span>
 
-        </div>
-        <div class="category">
-          <span class="text">Friend</span>
-          <span class="sub">Category</span>
 
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="user-img-2"></div>
-          <div class="fullname">
-              <span class="text">Lola Powell</span>
-            <span class="sub">Full Name</span>
-          </div>
-        <div class="number">
-          <span class="text">321 - 654 - 0987</span>
-          <span class="sub">Phone Number</span>
-
-        </div>
-        <div class="state">
-          <span class="text">TX</span>
-          <span class="sub">State</span>
-
-        </div>
-        <div class="category">
-          <span class="text">Friend</span>
-          <span class="sub">Category</span>
-
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="user-img-3"></div>
-          <div class="fullname">
-              <span class="text">Oscar Smith</span>
-            <span class="sub">Full Name</span>
-          </div>
-        <div class="number">
-          <span class="text">123 - 456 - 7890</span>
-          <span class="sub">Phone Number</span>
-
-        </div>
-        <div class="state">
-          <span class="text">CO</span>
-          <span class="sub">State</span>
-
-        </div>
-        <div class="category">
-          <span class="text">Friend</span>
-          <span class="sub">Category</span>
-
-        </div>
-      </div>
-
-    </section>
     </section>
 
 
